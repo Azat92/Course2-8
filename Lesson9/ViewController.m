@@ -8,8 +8,15 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface UIView (Extended)
+- (CGFloat)x;
+- (CGFloat)y;
+- (CGFloat)width;
+- (CGFloat)height;
+@end
 
+
+@interface ViewController ()
 @end
 
 @implementation ViewController
@@ -19,9 +26,20 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end
+
+@implementation UIView (Extended)
+- (CGFloat)x {
+    return self.frame.origin.x;
+}
+- (CGFloat)y {
+    return self.frame.origin.y;
+}
+- (CGFloat)width {
+    return self.frame.size.width;
+}
+- (CGFloat)height {
+    return self.frame.size.height;
+}
+@end
+
