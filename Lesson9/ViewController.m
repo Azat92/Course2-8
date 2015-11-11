@@ -8,14 +8,6 @@
 
 #import "ViewController.h"
 
-@interface UIView (Extended)
-- (CGFloat)x;
-- (CGFloat)y;
-- (CGFloat)width;
-- (CGFloat)height;
-@end
-
-
 @interface ViewController ()
 @end
 
@@ -23,23 +15,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(changeButtonPos) userInfo:nil repeats:YES];
+}
+
+- (IBAction)game:(id)sender {
+    if(self.check !=1)
+    self.score.text = [NSString stringWithFormat:@"%d",self.score.text.intValue + 1];
+    self.check = 1;
+    
+}
+
+-(void)changeButtonPos{
+    CGRect screen = [[UIScreen mainScreen]bounds];
+    CGSize size = screen.size;
+    self.Y.constant = arc4random_uniform(size.width);
+    self.X.constant = arc4random_uniform(size.height);
+    self.clicks.text = [NSString stringWithFormat:@"%d",self.clicks.text.intValue + 1];
+    self.check = 0;
 }
 
 @end
 
-@implementation UIView (Extended)
-- (CGFloat)x {
-    return self.frame.origin.x;
-}
-- (CGFloat)y {
-    return self.frame.origin.y;
-}
-- (CGFloat)width {
-    return self.frame.size.width;
-}
-- (CGFloat)height {
-    return self.frame.size.height;
-}
-@end
 
